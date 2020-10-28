@@ -31,11 +31,11 @@ function populateSelector(selectElmId, data) {
 }
 
 //wait for user to select a country
-document.getElementById("countires").addEventListener("click", search);
+document.getElementById("countires").addEventListener("change", search);
 
 function search() {
 	const code = document.getElementById("countires").value;
-
+	//request covid data
 	fetch(
 	    `https://www.trackcorona.live/api/countries/${code}`,
 	    requestOptions
@@ -50,8 +50,8 @@ function showSearchResults(data, code) {
 	let recovered = document.getElementById("recovered");
 	let active = document.getElementById("active");
 
+	//display data
 	if (data["data"][0] != null) {
-
 		const num_confirmed = data["data"][0]["confirmed"];
 		confirmed.innerHTML = `<img src="https://www.countryflags.io/${code}/flat/24.png" /> ${num_confirmed.toLocaleString()}`;
 		
@@ -60,10 +60,7 @@ function showSearchResults(data, code) {
 		
 		const num_active = num_confirmed - num_recovered - data["data"][0]["dead"];
 		active.innerHTML = `<img src="https://www.countryflags.io/${code}/flat/24.png" /> ${num_active.toLocaleString()}`;
-
-		//console.log(`con=${num_confirmed}, rec=${num_recovered}, act=${num_active}`);
-	} else {
-		//console.log(`no results found for ${code}`);
+	} else { //no results found
 		confirmed.innerHTML = `<img src="https://www.countryflags.io/${code}/flat/24.png" /> N/A`;
 		recovered.innerHTML = `<img src="https://www.countryflags.io/${code}/flat/24.png" /> N/A`;
 		active.innerHTML = `<img src="https://www.countryflags.io/${code}/flat/24.png" /> N/A`;
