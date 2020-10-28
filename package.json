@@ -1,0 +1,24 @@
+{
+  "name": "quiz-QinyuanWu",
+  "version": "1.0.0",
+  "description": "This simple web application allows a client to select a country and retrieve the following COVID-related statistics:",
+  "main": "script.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cs280fall20-homework/quiz-QinyuanWu.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cs280fall20-homework/quiz-QinyuanWu/issues"
+  },
+  "homepage": "https://github.com/cs280fall20-homework/quiz-QinyuanWu#readme"
+}
