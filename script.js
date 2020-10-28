@@ -13,6 +13,8 @@ fetch(
     .then((data) => populateSelector("countires", data))
     .catch((error) => console.log("error", error));
 
+search(); //display latest US case numbers
+
 function populateSelector(selectElmId, data) {
   const select = document.getElementById(selectElmId);
   select.innerHTML = "";
@@ -21,6 +23,9 @@ function populateSelector(selectElmId, data) {
     item = document.createElement("option");
     item.value = data[i]["alpha2Code"]; //store country code as value
     item.innerText = data[i]["name"]; //store country name for display
+    if (item.value === 'US') {
+    	item.selected = true; //make united states default
+    }
     select.appendChild(item);
   }
 }
@@ -30,7 +35,6 @@ document.getElementById("countires").addEventListener("click", search);
 
 function search() {
 	const code = document.getElementById("countires").value;
-	const country = document.getElementById("countires").innerText;
 
 	fetch(
 	    `https://www.trackcorona.live/api/countries/${code}`,
@@ -46,23 +50,20 @@ function showSearchResults(data, code) {
 	let recovered = document.getElementById("recovered");
 	let active = document.getElementById("active");
 
-
 	if (data["data"][0] != null) {
 
 		const num_confirmed = data["data"][0]["confirmed"];
 		confirmed.innerHTML = `<img src="https://www.countryflags.io/${code}/flat/24.png" /> ${num_confirmed.toLocaleString()}`;
-
 		
 		const num_recovered = data["data"][0]["recovered"];
 		recovered.innerHTML = `<img src="https://www.countryflags.io/${code}/flat/24.png" /> ${num_recovered.toLocaleString()}`;
-
 		
 		const num_active = num_confirmed - num_recovered - data["data"][0]["dead"];
 		active.innerHTML = `<img src="https://www.countryflags.io/${code}/flat/24.png" /> ${num_active.toLocaleString()}`;
 
-		console.log(`con=${num_confirmed}, rec=${num_recovered}, act=${num_active}`);
+		//console.log(`con=${num_confirmed}, rec=${num_recovered}, act=${num_active}`);
 	} else {
-		console.log(`no results found for ${code}`);
+		//console.log(`no results found for ${code}`);
 		confirmed.innerHTML = `<img src="https://www.countryflags.io/${code}/flat/24.png" /> N/A`;
 		recovered.innerHTML = `<img src="https://www.countryflags.io/${code}/flat/24.png" /> N/A`;
 		active.innerHTML = `<img src="https://www.countryflags.io/${code}/flat/24.png" /> N/A`;
