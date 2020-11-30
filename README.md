@@ -7,4 +7,4 @@ This simple web application allows a client to select a country and retrieve the
 * Total number of "recovered" cases.
 
 These statistics are retrieved from [https://www.trackcorona.live/api](https://www.trackcorona.live/api). 
-App is deployed on Heroku: 
+App is deployed on Heroku: https://covid-cases-olivia.herokuapp.com/
