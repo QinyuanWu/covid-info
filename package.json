@@ -4,7 +4,7 @@
   "description": "This simple web application allows a client to select a country and retrieve the following COVID-related statistics:",
   "main": "script.js",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.3"
   },
   "devDependencies": {},
   "scripts": {
